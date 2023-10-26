@@ -18,24 +18,37 @@ screen = pygame.display.set_mode((size))
 pygame.display.set_caption("Highway Outlaws")
 
 # Main menu function
-def main_menu():
+import pygame
+from pygame.locals import *
+
+class MainMenu:
+    def __init__ (self, screen, font, width, height):
+        self.screen = screen 
+        self.font = font
+        self.width = width 
+        self.height = height 
+
+def run(self):
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
-            #pressing spacebar to play the game
             if event.type == KEYDOWN and event.key == K_SPACE:
-                return
-            
-        screen.fill((0, 0, 0))
-        # main menu text and positioning
-        title_text = font.render("Press SPACE to Drive", True, ((255, 255, 255)))
-        screen.blit(title_text, (width // 2 - title_text.get_width() // 2, height // 2 - title_text.get_height() // 2))
-        # Updating the display
+                return 
+        self.screen.fill((0, 0. 0))
+        title_text = self.font.render("Press SPACE to Drive", True, (255, 255, 255)) 
+        self.screen.blit(title_text, (self width // 2 - title_text.get_width() // 2, self.height // 2 - title_text.get_height() // 2))
         pygame.display.flip()
 
-#calling the main menu function
-main_menu()
+if __name__ == "__main__":
+    pygame.init()
+    width, height = 800, 600
+    screen = pygame.display.set_mode((width, height)) 
+    font = pygame.font.Font(None, 36)
+
+    main_menu = MainMenu(screen, font, width, height)
+    main_menu.run() 
+        
 
 # Play background music
 pygame.mixer.music.load('former-102685.mp3')
