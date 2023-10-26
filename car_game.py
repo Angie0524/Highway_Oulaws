@@ -33,7 +33,7 @@ class MainMenu:
             title_text = cus_font.render("Highway Outlaws", True, (255, 255, 255))
             screen.blit(title_text, (width // 2 - title_text.get_width() // 2, height // 2 - title_text.get_height() * 2))
             drive_text = self.font.render("Press SPACE to Drive", True, (255, 255, 255)) 
-            self.screen.blit(title_text, (self.width // 2 - title_text.get_width() // 2, self.height // 2 - title_text.get_height() // 2))
+            self.screen.blit(drive_text, (self.width // 2 - drive_text.get_width() // 2, self.height // 2 - drive_text.get_height() // 2))
             # Updating the display 
             pygame.display.flip()
 # Example usage 
