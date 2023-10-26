@@ -100,6 +100,7 @@ en1_car = pygame.transform.scale(en1_car, (new_width, new_height))
 en1_car_loc = en1_car.get_rect()
 en1_car_loc = pygame.Rect(l_lane - 40, height*0.25 - 80, 80, 160)
 
+#oskar edited this coin part
 class Coin:
     def __init__(self, image_path, width, height, sound_path):
         self.image = pygame.image.load(image_path)
@@ -287,6 +288,7 @@ while running:
         screen.blit(game_over_instructions, (width // 2 - game_over_instructions.get_width() // 2, height // 2 + game_over_text.get_height()))
         pygame.mixer.music.stop()
 
+    #oskar edited this part
     if not game_over:
         # ... (previous code remains the same)
 
