@@ -25,6 +25,7 @@ class MainMenu:
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
+                    # Pressing spacebar to play the game 
                 if event.type == KEYDOWN and event.key == K_SPACE:
                     return 
             self.screen.fill((0, 0. 0))
@@ -33,8 +34,9 @@ class MainMenu:
             screen.blit(title_text, (width // 2 - title_text.get_width() // 2, height // 2 - title_text.get_height() * 2))
             drive_text = self.font.render("Press SPACE to Drive", True, (255, 255, 255)) 
             self.screen.blit(title_text, (self width // 2 - title_text.get_width() // 2, self.height // 2 - title_text.get_height() // 2))
+            # Updating the display 
             pygame.display.flip()
-
+# Example usage 
 if __name__ == "__main__":
     pygame.init()
     width, height = 900, 800
