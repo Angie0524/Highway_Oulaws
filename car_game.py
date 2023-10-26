@@ -298,6 +298,7 @@ while running:
         screen.blit(game_over_instructions, (width // 2 - game_over_instructions.get_width() // 2, height // 2 + game_over_text.get_height()))
         pygame.mixer.music.stop()
 
+    #oskar edited this part
     if not game_over:
 
         # Adjusted time interval for the coin to appear
