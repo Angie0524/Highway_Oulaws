@@ -129,7 +129,7 @@ def display_level_completion(screen, font, amount):
     screen.blit(level_complete_text, (width // 2 - level_complete_text.get_width() // 2, height // 2 - level_complete_text.get_height() // 2))
     pygame.display.update()
 
-# Game over message
+# Game over message (Amara)
 game_over_text = font.render("You Got Caught!", True, (255, 0, 0))
 running = True
 game_over = False
