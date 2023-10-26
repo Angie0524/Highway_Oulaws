@@ -182,11 +182,11 @@ while running:
                 # Reset the total amount of cash
                 total_cash = 0
                 # Reset the positions of coins and money
-                reset_coin_position()
+                coin.reset_position(road_width, roadmarking_width, width, height)
                 # Reset the timers
-                coin_timer = 0
+                coin.timer = 0
                 # Reset visibility
-                coin_visible = True
+                coin.visible = True
             # Quit the game if the user presses the 'Q' key
             if event.key == pygame.K_q:
                 running = False
@@ -230,7 +230,7 @@ while running:
                coin.play_sound()
                total_cash += 5
                #move the coin off the screen when collected
-               coin.reset_position(road_width, roadmarking, width, height)
+               coin.reset_position(road_width, roadmarking_width, width, height)
 
         # Checking if the player has collected £100
         if total_cash >= 100:
@@ -290,8 +290,7 @@ while running:
 
     #oskar edited this part
     if not game_over:
-        # ... (previous code remains the same)
-
+        
         #display the coin
         if coin.visible:
             coin.move()
@@ -302,7 +301,7 @@ while running:
         screen.blit(total_cash_text, (20, 20))
 
         # displays the coin image
-        screen.blit(coin_image, (coin_loc.x, coin_loc.y))
+        coin.draw(screen)
 
         #displays the player car image
         screen.blit(car, car_loc)
