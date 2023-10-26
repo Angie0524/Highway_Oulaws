@@ -100,26 +100,17 @@ en1_car = pygame.transform.scale(en1_car, (new_width, new_height))
 en1_car_loc = en1_car.get_rect()
 en1_car_loc = pygame.Rect(l_lane - 40, height*0.25 - 80, 80, 160)
 
-# Load the images for coin
-coin_image = pygame.image.load("money_1.png")
-
-#size of image of coin
-coin_width, coin_height = 40, 40
-
-# Resize the images
-coin_image = pygame.transform.scale(coin_image, (coin_width, coin_height))
-
-#sound when player collects coins
-coin_sound = pygame.mixer.Sound("mixkit-game-treasure-coin-2038.wav")
-
-# Set the initial location of the coins
-coin_loc = pygame.Rect(random.randint(100, width - 100), -100, coin_width, coin_height)
-
-#visiblity for coins
-coin_visible = True
-#timer for coins
-coin_interval = 150
-coin_timer = 0
+class Coin:
+    def __init__(self, image_path, width, height, sound_path):
+        self.image = pygame.image.load(image_path)
+        self.width = width
+        self.height = height
+        self.image = pygame.transform.scale(self.image, (self.width, self.height))
+        self.sound = pygame.mixer.Sound(sound_path)
+        self.visible = True
+        self.interval = 150
+        self.timer = 0
+        self.location = pygame.Rect(random.randint(100, width - 100), -100, self.width, self.height)
 
 # Function to reset the position of the coin and keep within the players reach
 def reset_coin_position():
