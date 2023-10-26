@@ -16,23 +16,23 @@ class MainMenu:
         self.width = width 
         self.height = height 
 
-def run(self):
-    while True:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-            if event.type == KEYDOWN and event.key == K_SPACE:
-                return 
-        self.screen.fill((0, 0. 0))
-        title_text = self.font.render("Press SPACE to Drive", True, (255, 255, 255)) 
-        self.screen.blit(title_text, (self width // 2 - title_text.get_width() // 2, self.height // 2 - title_text.get_height() // 2))
-        pygame.display.flip()
+    def run(self):
+        while True:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                if event.type == KEYDOWN and event.key == K_SPACE:
+                    return 
+            self.screen.fill((0, 0. 0))
+            title_text = self.font.render("Press SPACE to Drive", True, (255, 255, 255)) 
+            self.screen.blit(title_text, (self width // 2 - title_text.get_width() // 2, self.height // 2 - title_text.get_height() // 2))
+            pygame.display.flip()
 
 if __name__ == "__main__":
     pygame.init()
-    width, height = 800, 600
+    width, height = 900, 800
     screen = pygame.display.set_mode((width, height)) 
-    font = pygame.font.Font(None, 36)
+    font = pygame.font.Font(None, 50)
 
     main_menu = MainMenu(screen, font, width, height)
     main_menu.run() 
@@ -50,7 +50,7 @@ current_background_index = 0
 
 # Load the current background image
 background_image = pygame.image.load(background_images[current_background_index])
-background_image = pygame.transform.scale(background_image, (size))
+background_image = pygame.transform.scale(background_image, (width, height))
 
 
 # Define initial background position
@@ -229,7 +229,7 @@ while running:
         # Chooses a random backgrouqnd image
         current_background_index = random.randint(0, len(background_images) - 1)
         background_image = pygame.image.load(background_images[current_background_index])
-        background_image = pygame.transform.scale(background_image, (size))
+        background_image = pygame.transform.scale(background_image, (width, height))
 
     # Draw the two background images
     screen.blit(background_image, (0, background_y))
