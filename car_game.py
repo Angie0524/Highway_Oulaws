@@ -111,13 +111,30 @@ class Coin:
         self.interval = 150
         self.timer = 0
         self.location = pygame.Rect(random.randint(100, width - 100), -100, self.width, self.height)
+    def reset_position(self, road_width, roadmarking_width, width, height):
+        min_x = int(width / 2 - road_width / 2 + roadmarking_width * 4)
+        max_x = int(width / 2 + road_width / 2 - roadmarking_width * 4 - self.width)
+        self.location.x = random.randint(min_x, max_x)
+        self.location.y = -100
 
-# Function to reset the position of the coin and keep within the players reach
-def reset_coin_position():
-    min_x = int(width / 2 - road_width / 2 + roadmarking_width * 4)
-    max_x = int(width / 2 + road_width / 2 - roadmarking_width * 4 - coin_width)
-    coin_loc.x = random.randint(min_x, max_x)
-    coin_loc.y = -100
+    def play_sound(self):
+        self.sound.play()
+
+    def move(self):
+        if self.timer < 500 and not self.visible:
+            self.timer += 1
+            if self.timer == 500:
+                self.reset_position(road_width, roadmarking_width, width, height)
+                self.visible = True
+
+        if self.visible:
+            self.location.y += 1
+            if self.location.y > height:
+                self.visible = False
+                self.timer = 0
+
+    def draw(self, screen):
+        screen.blit(self.image, (self.location.x, self.location.y))
 
 #amount of money collected
 total_cash = 0
