@@ -225,13 +225,13 @@ while running:
             game_over = True
 
         # Check for collision with coins and play sound for coin collecting
-        if car_loc.colliderect(coin_loc):
-            coin_sound.play()
-            total_cash += 5
-            # Move the coin off the screen when collected
-            reset_coin_position()
+           if car_loc.colliderect(coin.location) and coin.visible:
+               coin.play_sound()
+               total_cash += 5
+               #move the coin off the screen when collected
+               coin.reset_position(road_width, roadmarking, width, height)
 
-        # Checking if the player has collected £30
+        # Checking if the player has collected £100
         if total_cash >= 100:
             display_level_completion(screen, font, total_cash)
             pygame.time.delay(3000)
@@ -288,20 +288,12 @@ while running:
         pygame.mixer.music.stop()
 
     if not game_over:
+        # ... (previous code remains the same)
 
-        # Adjusted time interval for the coin to appear
-        if coin_timer < 500 and not coin_visible:
-            coin_timer += 1
-            if coin_timer == 500:
-                reset_coin_position()
-                coin_visible = True
-
-        # Update the position of the coin if it's visible
-        if coin_visible:
-            coin_loc.y += 1
-            if coin_loc.y > height:
-                coin_visible = False
-                coin_timer = 0
+        #display the coin
+        if coin.visible:
+            coin.move()
+            coin.draw(screen)
 
         # Display the total amount of money collected
         total_cash_text = font.render(f"Total Cash: £{total_cash} / £100", True, (204, 0, 0))
