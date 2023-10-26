@@ -9,6 +9,10 @@ running = True
 # Name of game
 pygame.display.set_caption("Highway Outlaws")
 
+# font for menu title "Highway Outlaws"
+menu_font = ('PublicPixel-z84yD.ttf')
+cus_font = pygame.font.Font(menu_font, 55)
+
 class MainMenu:
     def __init__ (self, screen, font, width, height):
         self.screen = screen 
@@ -24,7 +28,10 @@ class MainMenu:
                 if event.type == KEYDOWN and event.key == K_SPACE:
                     return 
             self.screen.fill((0, 0. 0))
-            title_text = self.font.render("Press SPACE to Drive", True, (255, 255, 255)) 
+            # The title of the game and the positioning
+            title_text = cus_font.render("Highway Outlaws", True, (255, 255, 255))
+            screen.blit(title_text, (width // 2 - title_text.get_width() // 2, height // 2 - title_text.get_height() * 2))
+            drive_text = self.font.render("Press SPACE to Drive", True, (255, 255, 255)) 
             self.screen.blit(title_text, (self width // 2 - title_text.get_width() // 2, self.height // 2 - title_text.get_height() // 2))
             pygame.display.flip()
 
