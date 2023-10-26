@@ -302,4 +302,4 @@ while running:
 
 pygame.quit()
 
-# My team and I have been working on replit for the majority of the time.
+# My team and I have been working on replit for the majority of the time. There will be comments of who did what and where.
