@@ -111,6 +111,7 @@ class Coin:
         self.interval = 150
         self.timer = 0
         self.location = pygame.Rect(random.randint(100, width - 100), -100, self.width, self.height)
+        
     def reset_position(self, road_width, roadmarking_width, width, height):
         min_x = int(width / 2 - road_width / 2 + roadmarking_width * 4)
         max_x = int(width / 2 + road_width / 2 - roadmarking_width * 4 - self.width)
