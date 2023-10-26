@@ -28,12 +28,12 @@ class MainMenu:
                     # Pressing spacebar to play the game 
                 if event.type == KEYDOWN and event.key == K_SPACE:
                     return 
-            self.screen.fill((0, 0. 0))
+            self.screen.fill((0, 0, 0))
             # The title of the game and the positioning
             title_text = cus_font.render("Highway Outlaws", True, (255, 255, 255))
             screen.blit(title_text, (width // 2 - title_text.get_width() // 2, height // 2 - title_text.get_height() * 2))
             drive_text = self.font.render("Press SPACE to Drive", True, (255, 255, 255)) 
-            self.screen.blit(title_text, (self width // 2 - title_text.get_width() // 2, self.height // 2 - title_text.get_height() // 2))
+            self.screen.blit(title_text, (self.width // 2 - title_text.get_width() // 2, self.height // 2 - title_text.get_height() // 2))
             # Updating the display 
             pygame.display.flip()
 # Example usage 
