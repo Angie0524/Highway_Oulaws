@@ -1,4 +1,3 @@
-# Main menu function
 import pygame
 from pygame.locals import *
 import random
@@ -6,12 +5,25 @@ import random
 pygame.init()
 running = True
 
+# Fonts
+font = pygame.font.Font(None, 50)
+
+# Variable for size of screen
+size = width, height = (900, 800)
+
+# Screen size
+screen = pygame.display.set_mode((size))
+
 # Name of game
 pygame.display.set_caption("Highway Outlaws")
 
 # font for menu title "Highway Outlaws"
 menu_font = ('PublicPixel-z84yD.ttf')
 cus_font = pygame.font.Font(menu_font, 55)
+
+# music/sound for main menu
+car_acc_sound = pygame.mixer.Sound('car-engine-starting-43705.mp3')
+car_acc_played = False
 
 class MainMenu:
     def __init__ (self, screen, font, width, height):
@@ -21,6 +33,8 @@ class MainMenu:
         self.height = height 
 
     def run(self):
+        # Accesses the global variable
+        global car_acc_played
         while True:
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -29,14 +43,21 @@ class MainMenu:
                 if event.type == KEYDOWN and event.key == K_SPACE:
                     return 
             self.screen.fill((0, 0, 0))
+            # playing the ignition for the main menu
+            # checking if the sound hasn't been played yet
+            if not car_acc_played:
+                car_acc_sound.play()
+                car_acc_played = True
             # The title of the game and the positioning
             title_text = cus_font.render("Highway Outlaws", True, (255, 255, 255))
             screen.blit(title_text, (width // 2 - title_text.get_width() // 2, height // 2 - title_text.get_height() * 2))
+            # Instructions for the player
             drive_text = self.font.render("Press SPACE to Drive", True, (255, 255, 255)) 
             self.screen.blit(drive_text, (self.width // 2 - drive_text.get_width() // 2, self.height // 2 - drive_text.get_height() // 2))
             # Updating the display 
             pygame.display.flip()
-# Example usage 
+
+# 
 if __name__ == "__main__":
     pygame.init()
     width, height = 900, 800
@@ -45,7 +66,6 @@ if __name__ == "__main__":
 
     main_menu = MainMenu(screen, font, width, height)
     main_menu.run() 
-        
 
 # Play background music
 pygame.mixer.music.load('former-102685.mp3')
@@ -59,7 +79,7 @@ current_background_index = 0
 
 # Load the current background image
 background_image = pygame.image.load(background_images[current_background_index])
-background_image = pygame.transform.scale(background_image, (width, height))
+background_image = pygame.transform.scale(background_image, (size))
 
 
 # Define initial background position
@@ -100,45 +120,33 @@ en1_car = pygame.transform.scale(en1_car, (new_width, new_height))
 en1_car_loc = en1_car.get_rect()
 en1_car_loc = pygame.Rect(l_lane - 40, height*0.25 - 80, 80, 160)
 
-#oskar edited this coin part
-class Coin:
-    def __init__(self, image_path, width, height, sound_path):
-        self.image = pygame.image.load(image_path)
-        self.width = width
-        self.height = height
-        self.image = pygame.transform.scale(self.image, (self.width, self.height))
-        self.sound = pygame.mixer.Sound(sound_path)
-        self.visible = True
-        self.interval = 150
-        self.timer = 0
-        self.location = pygame.Rect(random.randint(100, width - 100), -100, self.width, self.height)
-        
-    def reset_position(self, road_width, roadmarking_width, width, height):
-        min_x = int(width / 2 - road_width / 2 + roadmarking_width * 4)
-        max_x = int(width / 2 + road_width / 2 - roadmarking_width * 4 - self.width)
-        self.location.x = random.randint(min_x, max_x)
-        self.location.y = -100
+# Load the images for coin
+coin_image = pygame.image.load("money_1.png")
 
-    def play_sound(self):
-        self.sound.play()
+#size of image of coin
+coin_width, coin_height = 40, 40
 
-    def move(self):
-        if self.timer < 500 and not self.visible:
-            self.timer += 1
-            if self.timer == 500:
-                self.reset_position(road_width, roadmarking_width, width, height)
-                self.visible = True
+# Resize the images
+coin_image = pygame.transform.scale(coin_image, (coin_width, coin_height))
 
-        if self.visible:
-            self.location.y += 1
-            if self.location.y > height:
-                self.visible = False
-                self.timer = 0
+#sound when player collects coins
+coin_sound = pygame.mixer.Sound("mixkit-game-treasure-coin-2038.wav")
 
-    def draw(self, screen):
-        screen.blit(self.image, (self.location.x, self.location.y))
+# Set the initial location of the coins
+coin_loc = pygame.Rect(random.randint(100, width - 100), -100, coin_width, coin_height)
 
-coin = Coin("coin.image.png", 30, 30, "coin_collect.wav")
+#visiblity for coins
+coin_visible = True
+#timer for coins
+coin_interval = 150
+coin_timer = 0
+
+# Function to reset the position of the coin and keep within the players reach
+def reset_coin_position():
+    min_x = int(width / 2 - road_width / 2 + roadmarking_width * 4)
+    max_x = int(width / 2 + road_width / 2 - roadmarking_width * 4 - coin_width)
+    coin_loc.x = random.randint(min_x, max_x)
+    coin_loc.y = -100
 
 #amount of money collected
 total_cash = 0
@@ -150,7 +158,7 @@ def display_level_completion(screen, font, amount):
     screen.blit(level_complete_text, (width // 2 - level_complete_text.get_width() // 2, height // 2 - level_complete_text.get_height() // 2))
     pygame.display.update()
 
-# Game over message (Amara)
+# Game over message
 game_over_text = font.render("You Got Caught!", True, (255, 0, 0))
 running = True
 game_over = False
@@ -184,11 +192,11 @@ while running:
                 # Reset the total amount of cash
                 total_cash = 0
                 # Reset the positions of coins and money
-                coin.reset_position(road_width, roadmarking_width, width, height)
+                reset_coin_position()
                 # Reset the timers
-                coin.timer = 0
+                coin_timer = 0
                 # Reset visibility
-                coin.visible = True
+                coin_visible = True
             # Quit the game if the user presses the 'Q' key
             if event.key == pygame.K_q:
                 running = False
@@ -228,13 +236,13 @@ while running:
             game_over = True
 
         # Check for collision with coins and play sound for coin collecting
-        if car_loc.colliderect(coin.location) and coin.visible:
-            coin.play_sound()
+        if car_loc.colliderect(coin_loc):
+            coin_sound.play()
             total_cash += 5
-            #move the coin off the screen when collected
-            coin.reset_position(road_width, roadmarking_width, width, height)
+            # Move the coin off the screen when collected
+            reset_coin_position()
 
-        # Checking if the player has collected £100
+        # Checking if the player has collected £30
         if total_cash >= 100:
             display_level_completion(screen, font, total_cash)
             pygame.time.delay(3000)
@@ -250,7 +258,7 @@ while running:
         # Chooses a random backgrouqnd image
         current_background_index = random.randint(0, len(background_images) - 1)
         background_image = pygame.image.load(background_images[current_background_index])
-        background_image = pygame.transform.scale(background_image, (width, height))
+        background_image = pygame.transform.scale(background_image, (size))
 
     # Draw the two background images
     screen.blit(background_image, (0, background_y))
@@ -290,20 +298,28 @@ while running:
         screen.blit(game_over_instructions, (width // 2 - game_over_instructions.get_width() // 2, height // 2 + game_over_text.get_height()))
         pygame.mixer.music.stop()
 
-    #oskar edited this part
     if not game_over:
-        
-        #display the coin
-        if coin.visible:
-            coin.move()
-            coin.draw(screen)
+
+        # Adjusted time interval for the coin to appear
+        if coin_timer < 500 and not coin_visible:
+            coin_timer += 1
+            if coin_timer == 500:
+                reset_coin_position()
+                coin_visible = True
+
+        # Update the position of the coin if it's visible
+        if coin_visible:
+            coin_loc.y += 1
+            if coin_loc.y > height:
+                coin_visible = False
+                coin_timer = 0
 
         # Display the total amount of money collected
         total_cash_text = font.render(f"Total Cash: £{total_cash} / £100", True, (204, 0, 0))
         screen.blit(total_cash_text, (20, 20))
 
         # displays the coin image
-        coin.draw(screen)
+        screen.blit(coin_image, (coin_loc.x, coin_loc.y))
 
         #displays the player car image
         screen.blit(car, car_loc)
@@ -316,4 +332,4 @@ while running:
 
 pygame.quit()
 
-# My team and I have been working on replit for the majority of the time. There will be comments of who did what and where.
+# Our have been working on replit for the majority of the time. There will be comments of who did what and where.
