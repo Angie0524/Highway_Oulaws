@@ -1,3 +1,4 @@
+# Main menu function
 import pygame
 from pygame.locals import *
 import random
@@ -5,21 +6,8 @@ import random
 pygame.init()
 running = True
 
-# Fonts
-font = pygame.font.Font(None, 50)
-
-# Variable for size of screen
-size = width, height = (900, 800)
-
-# Screen size
-screen = pygame.display.set_mode((size))
-
 # Name of game
 pygame.display.set_caption("Highway Outlaws")
-
-# Main menu function
-import pygame
-from pygame.locals import *
 
 class MainMenu:
     def __init__ (self, screen, font, width, height):
