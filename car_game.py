@@ -138,6 +138,8 @@ class Coin:
     def draw(self, screen):
         screen.blit(self.image, (self.location.x, self.location.y))
 
+coin = Coin("coin.image.png", 30, 30, "coin_collect.wav")
+
 #amount of money collected
 total_cash = 0
 
@@ -182,11 +184,11 @@ while running:
                 # Reset the total amount of cash
                 total_cash = 0
                 # Reset the positions of coins and money
-                Coin.reset_position(road_width, roadmarking_width, width, height)
+                coin.reset_position(road_width, roadmarking_width, width, height)
                 # Reset the timers
-                Coin.timer = 0
+                coin.timer = 0
                 # Reset visibility
-                Coin.visible = True
+                coin.visible = True
             # Quit the game if the user presses the 'Q' key
             if event.key == pygame.K_q:
                 running = False
@@ -226,11 +228,11 @@ while running:
             game_over = True
 
         # Check for collision with coins and play sound for coin collecting
-        if car_loc.colliderect(Coin.location) and Coin.visible:
-            Coin.play_sound()
+        if car_loc.colliderect(coin.location) and coin.visible:
+            coin.play_sound()
             total_cash += 5
             #move the coin off the screen when collected
-            Coin.reset_position(road_width, roadmarking_width, width, height)
+            coin.reset_position(road_width, roadmarking_width, width, height)
 
         # Checking if the player has collected £100
         if total_cash >= 100:
@@ -292,16 +294,16 @@ while running:
     if not game_over:
         
         #display the coin
-        if Coin.visible:
-            Coin.move()
-            Coin.draw(screen)
+        if coin.visible:
+            coin.move()
+            coin.draw(screen)
 
         # Display the total amount of money collected
         total_cash_text = font.render(f"Total Cash: £{total_cash} / £100", True, (204, 0, 0))
         screen.blit(total_cash_text, (20, 20))
 
         # displays the coin image
-        Coin.draw(screen)
+        coin.draw(screen)
 
         #displays the player car image
         screen.blit(car, car_loc)
