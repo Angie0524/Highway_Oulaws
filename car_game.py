@@ -16,7 +16,7 @@ cus_font = pygame.font.Font(menu_font, 55)
 car_acc_sound = pygame.mixer.Sound('car-engine-starting-43705.mp3')
 car_acc_played = False
 
-# Rimsha did this 
+# Rimsha did main menu coding
 class MainMenu:
     def __init__ (self, screen, font, width, height):
         self.screen = screen 
@@ -58,7 +58,7 @@ if __name__ == "__main__":
 
     main_menu = MainMenu(screen, font, width, height)
     main_menu.run() 
-# rimsha did coding till here 
+# rimsha did main menu coding till here 
 
 #Angelina did the background parts of the code
 # Play background music
@@ -144,6 +144,7 @@ def reset_coin_position():
 #amount of money collected
 total_cash = 0
 
+#rimsha did the level completion message
 # Function to display the level completion message
 def display_level_completion(screen, font, amount):
     screen.fill((64, 64, 64))
