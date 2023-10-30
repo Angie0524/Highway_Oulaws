@@ -72,7 +72,7 @@ current_background_index = 0
 
 # Load the current background image
 background_image = pygame.image.load(background_images[current_background_index])
-background_image = pygame.transform.scale(background_image, (size))
+background_image = pygame.transform.scale(background_image, (width, height))
 
 # Define initial background position
 background_y = 0
