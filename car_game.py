@@ -254,7 +254,7 @@ while running:
         # Chooses a random backgrouqnd image
         current_background_index = random.randint(0, len(background_images) - 1)
         background_image = pygame.image.load(background_images[current_background_index])
-        background_image = pygame.transform.scale(background_image, (size))
+        background_image = pygame.transform.scale(background_image, (width, height))
 
     # Draws the two background images
     screen.blit(background_image, (0, background_y))
