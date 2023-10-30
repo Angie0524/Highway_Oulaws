@@ -143,6 +143,7 @@ coin_visible = True
 coin_interval = 150
 coin_timer = 0
 
+ #oskar edited this part about coins
 # Function to reset the position of the coin and keep within the players reach
 def reset_coin_position():
     min_x = int(width / 2 - road_width / 2 + roadmarking_width * 4)
@@ -237,6 +238,7 @@ while running:
         if car_loc.colliderect(en1_car_loc):
             game_over = True
 
+         #oskar edited this part about coins
         # Check for collision with coins and play sound for coin collecting
         if car_loc.colliderect(coin_loc):
             coin_sound.play()
@@ -300,7 +302,7 @@ while running:
         screen.blit(game_over_instructions, (width // 2 - game_over_instructions.get_width() // 2, height // 2 + game_over_text.get_height()))
         pygame.mixer.music.stop()
 
-    #oskar edited this part
+    #oskar edited this part about coins
     if not game_over:
 
         # Adjusted time interval for the coin to appear
