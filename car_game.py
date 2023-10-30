@@ -25,6 +25,7 @@ cus_font = pygame.font.Font(menu_font, 55)
 car_acc_sound = pygame.mixer.Sound('car-engine-starting-43705.mp3')
 car_acc_played = False
 
+# Rimsha did this 
 class MainMenu:
     def __init__ (self, screen, font, width, height):
         self.screen = screen 
@@ -66,6 +67,7 @@ if __name__ == "__main__":
 
     main_menu = MainMenu(screen, font, width, height)
     main_menu.run() 
+# rimsha did coding till here 
 
 # Play background music
 pygame.mixer.music.load('former-102685.mp3')
