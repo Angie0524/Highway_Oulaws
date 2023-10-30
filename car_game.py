@@ -5,19 +5,10 @@ import random
 pygame.init()
 running = True
 
-# Fonts
-font = pygame.font.Font(None, 50)
-
-# Variable for size of screen
-size = width, height = (900, 800)
-
-# Screen size
-screen = pygame.display.set_mode((size))
-
 # Name of game
 pygame.display.set_caption("Highway Outlaws")
 
-# font for menu title "Highway Outlaws"
+# custom font for menu title "Highway Outlaws"
 menu_font = ('PublicPixel-z84yD.ttf')
 cus_font = pygame.font.Font(menu_font, 55)
 
@@ -45,20 +36,20 @@ class MainMenu:
                     return 
             self.screen.fill((0, 0, 0))
             # playing the ignition for the main menu
-            # checking if the sound hasn't been played yet
+            # checking if the sound hasn't been played yet / makes sure the sound is played only once
             if not car_acc_played:
                 car_acc_sound.play()
                 car_acc_played = True
             # The title of the game and the positioning
             title_text = cus_font.render("Highway Outlaws", True, (255, 255, 255))
             screen.blit(title_text, (width // 2 - title_text.get_width() // 2, height // 2 - title_text.get_height() * 2))
-            # Instructions for the player
+            # Instructions for the player and positioning of the text
             drive_text = self.font.render("Press SPACE to Drive", True, (255, 255, 255)) 
             self.screen.blit(drive_text, (self.width // 2 - drive_text.get_width() // 2, self.height // 2 - drive_text.get_height() // 2))
             # Updating the display 
             pygame.display.flip()
 
-# 
+# The features of the game itself 
 if __name__ == "__main__":
     pygame.init()
     width, height = 900, 800
@@ -69,6 +60,7 @@ if __name__ == "__main__":
     main_menu.run() 
 # rimsha did coding till here 
 
+#Angelina did the background parts of the code
 # Play background music
 pygame.mixer.music.load('former-102685.mp3')
 # this loops the music throughout the gameplay
@@ -78,22 +70,20 @@ pygame.mixer.music.play(-1)
 background_images = ["grass.jpg", "trees.jpg", "water.jpg"]
 current_background_index = 0
 
-
 # Load the current background image
 background_image = pygame.image.load(background_images[current_background_index])
 background_image = pygame.transform.scale(background_image, (size))
 
-
 # Define initial background position
 background_y = 0
-
+# Angelina did up to here
 
 # Default speeds
 def_scrolling_speed = 0.35
 def_player_speed = 2.5
 def_en_car_speed = 1
 
-
+# Angelina did the road and roadmarkings of the code
 # Size of road and roadmarkings
 road_width = int(width/1.8)
 roadmarking_width = int(width/80)
@@ -160,7 +150,8 @@ def display_level_completion(screen, font, amount):
     level_complete_text = font.render(f"Level 1 Completed: You've escaped with £{amount}", True, (204, 204, 0))
     screen.blit(level_complete_text, (width // 2 - level_complete_text.get_width() // 2, height // 2 - level_complete_text.get_height() // 2))
     pygame.display.update()
-
+    
+# Angelina did the game over parts of the code
 # Game over message
 game_over_text = font.render("You Got Caught!", True, (255, 0, 0))
 running = True
@@ -256,15 +247,15 @@ while running:
     # How fast the bachground should scroll
     background_y += def_scrolling_speed
 
+    # Resets the background position so it looks as thought it is scrolling continously
     if background_y >= background_image.get_height():
-        # Resets the background position
         background_y = 0
         # Chooses a random backgrouqnd image
         current_background_index = random.randint(0, len(background_images) - 1)
         background_image = pygame.image.load(background_images[current_background_index])
         background_image = pygame.transform.scale(background_image, (size))
 
-    # Draw the two background images
+    # Draws the two background images
     screen.blit(background_image, (0, background_y))
     screen.blit(background_image, (0, background_y - background_image.get_height()))
 
@@ -337,4 +328,4 @@ while running:
 
 pygame.quit()
 
-# Our have been working on replit for the majority of the time. There will be comments of who did what and where.
+# Our team have been working on replit for the majority of the time. There will be comments of who did what and where.
