@@ -102,7 +102,7 @@ car_loc = car.get_rect()
 car_loc = pygame.Rect(width/2 - road_width/4 - 40, height*0.85 - 80, 80, 160)
 
 
-# Load the opposing car image
+# Load the opposing car image (Amara coded the enemy car and player car)
 en1_car = pygame.image.load("enemy_car1.png")
 # Define the desired dimensions for the opposing car
 new_width, new_height = 90, 160
@@ -182,7 +182,7 @@ while running:
                 game_over_police.stop()
                 # Reset the player car location
                 car_loc = pygame.Rect(width / 2 - road_width / 4 - new_width / 2, height * 0.85 - new_height / 2, new_width, new_height)
-                # Reset the enemy car location
+                # Reset the enemy car location 
                 en1_car_loc.center = (l_lane - new_width / 2, -200)
                 # Reset the total amount of cash
                 total_cash = 0
