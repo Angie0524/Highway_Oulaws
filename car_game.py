@@ -118,7 +118,7 @@ coin_image = pygame.image.load("money_1.png")
 #size of image of coin
 coin_width, coin_height = 40, 40
 
-# Resize the images
+# Resize the images for the coins
 coin_image = pygame.transform.scale(coin_image, (coin_width, coin_height))
 
 #sound when player collects coins
