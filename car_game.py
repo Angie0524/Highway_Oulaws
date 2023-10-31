@@ -210,7 +210,7 @@ while running:
                 car_loc.centerx += def_player_speed
 
 
-    #animate the oncoming vehicle
+    #animate the oncoming vehicle (Amara coded the animate the oncoming vehicle)
     en1_car_loc[1] += 1
     en1_car_loc.y += def_en_car_speed
     if en1_car_loc[1] > height:
@@ -221,12 +221,12 @@ while running:
             #shift the enemy car into the left lane
             en1_car_loc.center = l_lane, -200 
 
-    # Check for collision between enemy and player car
+    # Check for collision between enemy and player car (Amara coded this area)
     if running and not game_over:
         if car_loc.colliderect(en1_car_loc):
             game_over = True
 
-        # Check for collision and collect money
+        # Check for collision and collect money (Oskar coded this area)
         if car_loc.colliderect(en1_car_loc):
             game_over = True
 
@@ -318,7 +318,7 @@ while running:
         # displays the coin image
         screen.blit(coin_image, (coin_loc.x, coin_loc.y))
 
-        #displays the player car image
+        #displays the player car image (Amara coded this area)
         screen.blit(car, car_loc)
         #displays the enemy car image
         screen.blit(en1_car, en1_car_loc)
