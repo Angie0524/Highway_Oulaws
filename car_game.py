@@ -285,13 +285,17 @@ while running:
         (width / 2 + road_width / 2 - roadmarking_width * 3, 0, roadmarking_width, height))
     
     if game_over:
-        #Playing police siren sound
+        # Playing police siren sound
         game_over_sound.play()
-        game_over_police.play(0)
+        # The background image to be black
         screen.blit(game_over_image, (0, 0))
+        # Measurements to ensure the game over text is placed in the middle where suitable
         screen.blit(game_over_text, (width // 2 - game_over_text.get_width() // 2, height // 2 - game_over_text.get_height() // 2))
+        # The instructions for the player whether they want to restart or quit
         game_over_instructions = font.render("Press 'R' to restart or 'Q' to quit", True, (255, 255, 255))
+        # Sets the placement for the text, in the middle where suitable for player to read
         screen.blit(game_over_instructions, (width // 2 - game_over_instructions.get_width() // 2, height // 2 + game_over_text.get_height()))
+        # Background music stops
         pygame.mixer.music.stop()
 
     #oskar edited this part about coins
